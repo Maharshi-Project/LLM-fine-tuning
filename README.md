@@ -4,7 +4,35 @@ This repository contains notebooks and resources for fine-tuning Large Language 
 
 ## 📂 Repository Contents
 
-### 1. 🦙 Llama 3.2 Fine-Tuning
+### 1. 📉 Quantization Basics
+**File:** [`quantization_basics.ipynb`](./quantization_basics.ipynb)
+
+**Formulas:**
+
+$$scale = \frac{x_{max} - x_{min}}{q_{max} - q_{min}}$$
+  
+$$q = round \left( \frac{x - zero\\_point}{scale} \right)$$
+
+$$Dequantization = scale * \left( q - zero\\_point \right)$$
+
+* x : Original data
+* q : Quantized form
+* zero\_point : Hyperparameter / Value which represent the center of x
+
+**Types of Quantization:**
+1. Based on Data Distribution & Step Size
+   - Uniform Quantization (Linear)
+   - Non-Linear Quantization
+     - Example: Normal Float 4 (NF4)
+3. Based on Machine Learning Model Optimization
+   - Post-Training Quantization (PTQ)
+   - Quantization-Aware Training (QAT)
+
+An educational notebook that breaks down how LLM weights are compressed. It includes Python implementations of core concepts such as:
+* **Nearest-Neighbor Quantization:** Mapping high-precision weights to a limited set of allowed values.
+* **NF4 (NormalFloat 4-bit):** Exploring how Look-Up Tables (LUT) are used to simulate 4-bit quantization for normally distributed weights (QLoRA).
+
+### 2. 🦙 Llama 3.2 Fine-Tuning
 **File:** [`Llama_3-2_3B_Instruct_Fine_Tunning_Using_unsloth.ipynb`](./Llama_3-2_3B_Instruct_Fine_Tunning_Using_unsloth.ipynb)
 
 A complete pipeline for fine-tuning the **Llama 3.2 3B Instruct** model. This notebook utilizes the **Unsloth** library to accelerate training and reduce memory usage.
@@ -14,13 +42,6 @@ A complete pipeline for fine-tuning the **Llama 3.2 3B Instruct** model. This no
 * Setting up LoRA (Low-Rank Adaptation) adapters.
 * Training on ServiceNow-AI/R1-Distill-SFT datasets.
 * Inference and saving the fine-tuned model.
-
-### 2. 📉 Quantization Basics
-**File:** [`quantization_basics.ipynb`](./quantization_basics.ipynb)
-
-An educational notebook that breaks down how LLM weights are compressed. It includes Python implementations of core concepts such as:
-* **Nearest-Neighbor Quantization:** Mapping high-precision weights to a limited set of allowed values.
-* **NF4 (NormalFloat 4-bit):** Exploring how Look-Up Tables (LUT) are used to simulate 4-bit quantization for normally distributed weights (QLoRA).
 
 ## 🛠️ Tech Stack
 
